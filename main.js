@@ -16,7 +16,7 @@ app.get('/', function(req, res) {
 });
 
 io.on('connection', function(socket) {
-  console.log(socket.id, 'a user connected');
+  console.log(socket.id, 'new connection!');
   io.emit("connected");
 
   socket.on("logout", function() {
@@ -204,14 +204,11 @@ function post(sender, recipient, secmsg) {
   console.log(sender + " sent message to " + recipient);
   console.log("message: " + message);
 
-console.log(secmsg.stringify());
   var m = new SecureMessage({
     id: secmsg.message.id,
     action: "post",
     text: message
   });
-
-console.log(m.stringify());
 
   users[recipient].socket.send(m.encrypt(users[recipient].socket.sessionKey));
 }
