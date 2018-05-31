@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>SecureChat</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="./script/fontawesome-all.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/script/AppController.js"></script>
+    <script src="/script/UIAlertViewController.js"></script>
+    <script src="/script/UIChatViewController.js"></script>
+    <script src="/script/UIContactsViewController.js"></script>
+    <script src="/script/UILoginViewController.js"></script>
+    <script src="/script/SecureMessage.js"></script>
+    <script src="/script/forge.js"></script>
+
+    <script src="/script/main.js"></script>
+  </head>
+  <body onload="main()">
+    <!-- ALERT VIEW -->
+    <div id="UIAlertView" class="UIView">
+      <div id="UIAlertMessageView">
+        <h3>
+          <i class="fas fa-exclamation-triangle" id="UIAlertImageView"></i>
+          <span id="UIAlertTitle"></span>
+        </h3>
+        <span id="UIAlertDescription"></span>
+        <p id="UIAlertDismissView">Close</p>
+      </div>
+    </div>
+
+    <!-- MAIN VIEW -->
+    <div id="MainView">
+      <!-- CHAT VIEW -->
+      <div id="UIChatView" class="UIView darkbody">
+        <div class="UINavbarView">
+          <div id="UIButtonCloseConnectionView"> <i class="fas fa-times"></i></div>
+          <h2><i class="fas fa-lock" style="margin-right: 5px; margin-left: -25px;"></i><span id="UIChatRecipientUsernameText"></span></h2>
+        </div>
+        <ul id="UIMessagesListView">
+        </ul>
+        <form id="UIMessageInputView">
+          <textarea id="UITextAreaMessageView" class="UITextInputView" type="txt" placeholder="Write a message..." style=""></textarea>
+        </form>
+      </div>
+
+      <!-- LOGIN VIEW -->
+      <div id="UILoginView" class="UIView">
+        <div id="UIHeaderView">
+          <img id="UIImageLogoView" src="./img/logo.svg"></img>
+          <h1> SecureChat </h1>
+          <h2> a cybersecurity project by Filippo Scotto </h2>
+        </div>
+
+        <div class="UITextInputForm">
+          <span class="UITextInputFormImg"> <i class="fas fa-user"></i> </span>
+          <input id="UITextUsernameView" class="UITextInputView" type="txt" placeholder="Username" required>
+        </div>
+        <div class="UITextInputForm">
+          <span class="UITextInputFormImg"> <i class="fas fa-unlock"></i> </span>
+          <textarea id="UIPublicKeyView" class="UITextInputView" type="txt" placeholder="Public Key" required></textarea>
+        </div>
+        <div class="UITextInputForm">
+          <span class="UITextInputFormImg"> <i class="fas fa-key"></i> </span>
+          <textarea id="UIPrivateKeyView" class="UITextInputView" type="txt" placeholder="Private Key" required></textarea>
+        </div>
+        <button id="UIButtonLoginView"> <i class="fas fa-sign-in-alt"></i> Join the chat</button>
+      </div>
+
+      <!-- CONTACTS LIST VIEW -->
+      <div id="UIContactsView" class="UIView">
+        <div class="UINavbarView">
+          <div id="UIButtonLogOutButtonView">
+            <i class="fas fa-sign-out-alt"></i>
+          </div>
+          <div id="UIButtonRefreshContactsButtonView">
+            <i class="fas fa-sync-alt"></i>
+          </div>
+          <h2>Conctacts List</h2>
+        </div>
+        <ul id="UIContactsListView">
+        </ul>
+      </div>
+  </body>
+</html>

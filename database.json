@@ -1,0 +1,20 @@
+{
+  "alice": {
+    "pkey": "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDA5E3VWxdQHEHm3Zza6iom1lK/\nzyyvoSvyKsNYSbE2JCAGPHEFnLpQd3mdnFeXimIRHs8p7LFcxbOqGsZ0hHve6DNY\nUdHfoKpqMX5w6BGhzf4qCZS2OPN/JtJ5ctI4vd6na4J40QrwxKaG0T17wPsi7uAJ\n3Wz8l1j8sfJMM8aYIQIDAQAB\n-----END PUBLIC KEY-----",
+    "busy":0,
+    "logged":0
+  },
+
+  "bob" : {
+    "pkey": "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDKioSVLUxeoanc7bY/ypy+2WHl\ntPdwH0XFjrVXWlP/fXuH1CucxXztrtUnIxSaX+h9I7aCjuWkA0ZBh94RDowX9HB6\n0+Tmkg3pSRCOV9GqTSqecHvBqIhZmZYHDo322H/FvkKN7M7Ul6weCDJfTy38U6JB\nMOLy5Y8VbeUyjYwG6QIDAQAB\n-----END PUBLIC KEY-----",
+    "busy":0,
+    "logged":0
+  },
+
+  "pippo" : {
+    "pkey": "pkey",
+    "busy":0,
+    "logged":0
+  }
+
+}
