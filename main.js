@@ -19,7 +19,7 @@ io.on('connection', function(socket) {
   console.log(socket.id, 'new connection!');
   io.emit("connected");
 
-  socket.on("logout", function() {
+  socket.on("disconnect", function() {
     if(socket.username == undefined) {
       console.log(' - An unlogged user disconnected...');
       return;
