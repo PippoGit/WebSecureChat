@@ -1,7 +1,7 @@
 # WebSecureChat
 Browser version of SecureChat made with socket.io and forge
 
-**TRY IT!**
+# Try it!
 Try WebSecureChat on Heroku: https://websecurechat.herokuapp.com
 
 Login as **alice**:
@@ -57,5 +57,5 @@ MOLy5Y8VbeUyjYwG6QIDAQAB
 ```
 
 
-**TODO**
+# To do
 * DIGITALSIGNATURE VERIFY IS NOT WORKING!
