@@ -105,12 +105,13 @@ io.on('connection', function(socket) {
   }
 });
 
-http.listen(settings.net.port, function () {
+var PORT = process.env.PORT || settings.net.port;
+http.listen(PORT, function () {
   console.log('\033c'); //clean console out
   console.log('** SecureChat Server **');
   console.log('A cybersecurity project by Filippo Scotto\n');
 
-  console.log('\n Server available on port:', settings.net.port);
+  console.log('\n Server available on port:', PORT);
   console.log('------------------------------------------------------');
 });
 
