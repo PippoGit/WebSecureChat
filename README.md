@@ -59,3 +59,6 @@ MOLy5Y8VbeUyjYwG6QIDAQAB
 
 # To do
 * DIGITALSIGNATURE VERIFY IS NOT WORKING!
+
+# Known bugs
+* Messes everything up with unicode messages
