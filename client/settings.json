@@ -2,7 +2,7 @@
   "net":
   {
     "serverAddress": "127.0.0.1",
-    "serverPort": 2972
+    "serverPort": 80
   },
   "security":
   {
