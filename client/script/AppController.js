@@ -80,7 +80,7 @@ AppController.prototype.startServerConnection = function() {
 
         if (r == true) {
           ac.changeView("UIChatView");
-          ac.chatView.newChat(m.sender);
+          ac.chatView.newChat(m.sender, m.pkey);
           message = new SecureMessage({
             action: "accept",
             other: m.sender
@@ -112,7 +112,7 @@ AppController.prototype.startServerConnection = function() {
         me.busy = 1;
         me.chatSessionKey = secmsg.extractSessionKey(me.private);
         ac.changeView("UIChatView");
-        ac.chatView.newChat(m.username);
+        ac.chatView.newChat(m.username, m.pkey);
         break;
 
       case "declined":

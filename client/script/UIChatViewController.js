@@ -67,7 +67,7 @@ UIChatViewController.prototype.addSentMessage = function (text) {
   this.addMessage("UIMessageSentView", text);
 };
 
-UIChatViewController.prototype.newChat = function (username) {
+UIChatViewController.prototype.newChat = function (username, pkey) {
   this.recipient = username;
 
   while (this.messagesList.firstChild) {
@@ -75,6 +75,10 @@ UIChatViewController.prototype.newChat = function (username) {
   }
 
   document.getElementById("UIChatRecipientUsernameText").textContent = username;
+  document.getElementById("UIChatRecipientUsernameText").addEventListener("click", function() {
+    alert("Connection Information:\n username: " + username + "\n public key: " + pkey);
+  });
+
   document.getElementById("UITextAreaMessageView").disabled = false;
   document.getElementById("UITextAreaMessageView").value = "";
 };

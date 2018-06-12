@@ -195,7 +195,8 @@ function accept(user, secmsg) {
   var m = new SecureMessage({
     action: "accepted",
     username: user,
-    sessionKey: secmsg.message.sessionKey
+    sessionKey: secmsg.message.sessionKey,
+    pkey: users[user].pkey
   });
   m.sign(settings.security.private);
   users[secmsg.message.other].socket.send(m.encrypt(users[secmsg.message.other].socket.sessionKey));

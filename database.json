@@ -12,9 +12,15 @@
   },
 
   "pippo" : {
-    "pkey": "pkey",
+    "pkey": "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCXUgXYEWYHL70KygkklR5C5wJM\n1EL0GD1AdDMJ/W/yXgn0OohaOejRNbe77XVpE+/AtK2u/11iaLFQ3IkQo02n3n/4\nhCP0M84W0KyoZVfVwPjPEV+2+jv3LBVTBhcfUQ3A/i4OK4cmFhcch3V7PkeDxyaX\nfCOAOGUzyGRD0bU62wIDAQAB\n-----END PUBLIC KEY-----",
+    "busy":0,
+    "logged":0
+  },
+  "gabri" : {
+    "pkey": "-----BEGIN PUBLIC KEY-----\nMIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgH19SitVt9Ul7rjRpFj6/TIIzNwn\nE0Ybezl2cf3iSSQoYrgqR24IOmn8CDpZ/c42b7JxnI+aF3SmokpYFn4b4rbPSGJG\n/rtvwWN5nT3DfvQDIzMnvRFgNTXzDpyeLwFGre+VuoQ/nDZPiCMoB2ebAEuKUFo+\nDjgDwTmiAilyqACbAgMBAAE=\n-----END PUBLIC KEY-----",
     "busy":0,
     "logged":0
   }
+
 
 }
