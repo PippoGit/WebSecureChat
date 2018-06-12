@@ -7,7 +7,7 @@ function UIContactsViewController() {
   });
 
   document.getElementById("UIButtonLogOutButtonView").addEventListener("click", function() {
-    ac.serverConnection.emit("disconnect");
+    ac.serverConnection.close();
     me.logged = 0;
     ac.changeView("UILoginView");
   });
