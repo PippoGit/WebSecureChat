@@ -38,7 +38,8 @@ SecureMessage.prototype.encrypt = function (k) {
 }
 
 SecureMessage.prototype.encryptText = function (k) {
-  this.message.text = SecureMessage.symmetricEncrypt(k, this.message.text);
+  var text = forge.util.encodeUtf8(this.message.text);
+  this.message.text = SecureMessage.symmetricEncrypt(k, text);
 }
 
 //returns decrypted SecureMessage from HEX ciphertext
