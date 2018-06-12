@@ -121,9 +121,17 @@ function login(socket, secmsg) {
   if(!users.hasOwnProperty(username)) {
     throw("User doesn't exist");
   }
-//  if(!secmsg.verify(users[username].pkey)) {
-//    throw("Don't even try. You are not " + username);
-//  }
+  if(users[username].logged == 1) {
+    throw("User already logged in!");
+  }
+
+  try {
+    secmsg.verify(users[username].pkey);
+  }
+  catch(e) {
+    throw("Don't even try. You are not " + username);
+  }
+
 
   console.log(username + " logged id");
   users[username].busy = 0;
@@ -168,11 +176,15 @@ function close(user, other) {
 }
 
 function accept(user, secmsg) {
-  // if(!secmsg.verify(users[user].pkey)) {
-  //   console.log(user + " sent an unauthorized session key - closing connection");
-  //   users[user].busy = 0;
-  //   users[other].busy = 0;
-  // }
+  try {
+    secmsg.verify(users[user].pkey);
+  }
+  catch(e) {
+     console.log(user + " sent an unauthorized session key - closing connection");
+     users[user].busy = 0;
+     users[other].busy = 0;
+     return;
+  }
 
   console.log(user, " accepted to chat with ", secmsg.message.other);
 

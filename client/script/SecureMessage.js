@@ -64,8 +64,9 @@ SecureMessage.prototype.sign = function (pem) {
 SecureMessage.prototype.verify = function (pem) {
   var publicKey = forge.pki.publicKeyFromPem(pem);
   var md = forge.md.sha256.create();
+  md.update(JSON.stringify(this.message));
   var signature = forge.util.hexToBytes(this.signature);
-  var verified = publicKey.verify(md.digest().bytes(), this.signature);
+  var verified = publicKey.verify(md.digest().bytes(), signature);
   return verified;
 }
 

@@ -21,48 +21,6 @@ AppController.prototype.startServerConnection = function() {
     console.log("connected with the server!");
   });
 
-/*
-  this.serverConnection.on('list', function(data) {
-    var secmsg = SecureMessage.getSecureMessage(data, me.serverSessionKey)
-    ac.contactView.refreshList(secmsg.message.list);
-  });
-
-  this.serverConnection.on('close', function(data) {
-
-  });
-
-  this.serverConnection.on('error', function(data) {
-
-  });
-
-  this.serverConnection.on('post', function(data) {
-
-  });
-
-  this.serverConnection.on('grant', function() {
-    me.logged = 1;
-    ac.changeView("UIContactsView");
-    ac.getContactsList();
-  });
-
-  this.serverConnection.on('request', function(data) {
-
-  });
-
-  this.serverConnection.on('accepted', function(data) {
-
-  });
-
-  this.serverConnection.on('declined', function(data) {
-
-  });
-
-  this.serverConnection.on('accepted', function(data) {
-
-  });
-  */
-
-
   this.serverConnection.on('message', function(data) {
     if(SecureMessage.isClearTxt(data.toString())) {
       var secmsg = SecureMessage.parse(data.toString());
@@ -75,11 +33,6 @@ AppController.prototype.startServerConnection = function() {
 
     switch(m.action) {
       case "list":
-        // if(!secmsg.verify(Settings.security.serverPublic)) {
-        //   ac.alertView.show("Alert", "You received an unauthorized list of users and public keys");
-        //   return;
-        // }
-
         ac.contactView.refreshList(m.list);
         break;
 
@@ -108,11 +61,13 @@ AppController.prototype.startServerConnection = function() {
         break;
 
       case "request":
-
-        // if(!secmsg.verify(Settings.security.serverPublic)) {
-        //   ac.alertView.show("Alert", "You received an unauthorized chat request");
-        //   return;
-        // }
+        try {
+          secmsg.verify(Settings.security.serverPublic);
+        }
+        catch(e) {
+          ac.alertView.show("Alert", "You received an unauthorized chat request");
+          return;
+        }
 
         var r = confirm("New request from " + m.sender);
         var message;
@@ -139,10 +94,13 @@ AppController.prototype.startServerConnection = function() {
         break;
 
       case "accepted":
-        // if(!secmsg.verify(Settings.security.serverPublic)) {
-        //     ac.alertView.show("Alert", "You received an unauthorized session key");
-        //     return;
-        //   }
+        try {
+          secmsg.verify(Settings.security.serverPublic);
+        }
+        catch(e) {
+          ac.alertView.show("Alert", "You received an unauthorized session key");
+          return;
+        }
 
         alert(m.username + " accepted your request!");
         me.busy = 1;
@@ -156,7 +114,6 @@ AppController.prototype.startServerConnection = function() {
         break;
     }
 
-     //serverConnection.end();
   });
 
   this.serverConnection.on('end', function() {
@@ -171,5 +128,4 @@ AppController.prototype.startServerConnection = function() {
 AppController.prototype.getContactsList = function() {
   var message = new SecureMessage({action: "list"});
   ac.serverConnection.send(message.encrypt(me.serverSessionKey));
-  //ac.serverConnection.emit('list');
 }

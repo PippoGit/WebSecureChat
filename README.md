@@ -1,5 +1,8 @@
 # WebSecureChat
-Browser version of SecureChat made with socket.io and forge
+Browser version of SecureChat made with socket.io and forge.
+
+SecureChat is a simple chat application that uses some of the most famous cybersecurity algorithms to make it "safe".
+The server provides a TOFU (Trust On First Use) end-to-end encryption. Clients must be registered to the service in order to use it (the server must know the public keys of its clients)!
 
 # Try it!
 Try WebSecureChat on Heroku: https://websecurechat.herokuapp.com
@@ -58,7 +61,7 @@ MOLy5Y8VbeUyjYwG6QIDAQAB
 
 
 # To do
-* DIGITALSIGNATURE VERIFY IS NOT WORKING!
+* BAN Logic (?)
 
 # Known bugs
 * Messes everything up with unicode messages
