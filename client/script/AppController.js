@@ -18,9 +18,8 @@ AppController.prototype.startServerConnection = function() {
   this.serverConnection = io();
 
   //send heartbeat to keep connection alive!
-  var that = this;
   setInterval(function() {
-    that.serverConnection.emit('heartbeat');
+    ac.serverConnection.emit('heartbeat');
   }, 5000);
 
   this.serverConnection.on('connected', function() {
