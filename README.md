@@ -64,4 +64,4 @@ MOLy5Y8VbeUyjYwG6QIDAQAB
 * BAN Logic (?)
 
 # Known bugs
-* Messes everything up with unicode messages
+* SocketIO timeout policy sucks :( 
