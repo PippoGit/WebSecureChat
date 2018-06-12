@@ -19,6 +19,10 @@ io.on('connection', function(socket) {
   console.log(socket.id, 'new connection!');
   io.emit("connected");
 
+  socket.on("heartbeat", function() {
+    console.log(" ~ heartbeat from " + socket.id);
+  });
+
   socket.on("disconnect", function() {
     if(socket.username == undefined) {
       console.log(' - An unlogged user disconnected...');

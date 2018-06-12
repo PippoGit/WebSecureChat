@@ -17,6 +17,12 @@ AppController.prototype.changeView = function(view) {
 AppController.prototype.startServerConnection = function() {
   this.serverConnection = io();
 
+  //send heartbeat to keep connection alive!
+  var that = this;
+  setInterval(function() {
+    that.serverConnection.emit('heartbeat');
+  }, 5000);
+
   this.serverConnection.on('connected', function() {
     console.log("connected with the server!");
   });
