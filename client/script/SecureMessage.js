@@ -11,7 +11,7 @@ var SecureMessage = function SecureMessage(msg) {
 }
 
 SecureMessage.prototype.setID = function (num) {
-  this.message.id = (num == -1)?(Math.abs(Math.floor(Math.random() * Math.pow(2,32)))):(num+1);
+  this.message.id = (num == -1)?(parseInt(forge.util.bytesToHex(forge.random.getBytesSync(4)))):(num+1);
 }
 
 //returns HEX of the encripted SecureMessage
