@@ -84,7 +84,7 @@ SecureMessage.parse = function (json) {
 }
 
 SecureMessage.getRandomBytes = function (size) {
-  return orge.random.getBytesSync(size);
+  return forge.random.getBytesSync(size);
 }
 
 SecureMessage.prototype.extractSessionKey = function (pem) {
