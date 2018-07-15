@@ -41,7 +41,13 @@ io.on('connection', function(socket) {
       if(socket.username == undefined || !users[socket.username].logged) {
         //user is not logged yet, which means it doesn't have the session key, so it's RSA Encrypted...
         secmsg = SecureMessage.parse(buffer.toString());
-        socket.sessionKey = secmsg.extractSessionKey(settings.security.private);
+        var tempK = secmsg.extractSessionKey(settings.security.private);
+        if(isSessionKeyFresh(secmsg.message.username, tempK)) {
+          socket.sessionKey = tempK;
+          users[secmsg.message.username].previousSessionKeys.push(tempK); 
+        }
+        else
+          throw("The session key is not valid. Please, retry.");
       }
       else
       {
@@ -231,7 +237,14 @@ function post(sender, recipient, secmsg) {
   users[recipient].socket.send(m.encrypt(users[recipient].socket.sessionKey));
 }
 
-
+function isSessionKeyFresh(user, key) {
+  var keys = users[user].previousSessionKeys;
+  for(k in keys) {
+    if(k==key)
+      return false;
+  }
+  return true;
+}
 
 function list(username) {
   var list = [];
