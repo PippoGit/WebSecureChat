@@ -61,10 +61,8 @@ MOLy5Y8VbeUyjYwG6QIDAQAB
 
 
 # To do
-* Add nonce to the login message!
-* The server should decide the session key with the client! (to be "more sure" that is always fresh)
 * BAN Logic (?)
 
 
 # Known bugs
-* SocketIO timeout policy sucks :( 
+* SocketIO timeout policy sucks :(
