@@ -183,6 +183,8 @@ function close(user, other) {
 function accept(user, secmsg) {
   try {
     secmsg.verify(users[user].pkey);
+    if(!isEncryptedSessionKeyFresh(user, secmsg.message.sessionKey))
+      throw("Session Key is not fresh!");
   }
   catch(e) {
      console.log(user + " sent an unauthorized session key - closing connection");
@@ -247,4 +249,16 @@ function list(username) {
   // m.sign(settings.security.private);
   users[username].socket.send(m.encrypt(users[username].socket.sessionKey));
   return list;
+}
+
+function isEncryptedSessionKeyFresh(user, encryptedKey) {
+  // i don't know the key, but i can see the encrypted, so if the encrypted is old
+  // the key will be old too
+  var keys = users[user].previousEncryptedSessionKeys;
+  for(k in keys) {
+    if(k==encryptedKey)
+      return false;
+  }
+  users[user].previousEncryptedSessionKeys.push(encryptedKey);
+  return true;
 }
