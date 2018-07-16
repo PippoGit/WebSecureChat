@@ -11,7 +11,7 @@ var SecureMessage = function SecureMessage(msg) {
 }
 
 SecureMessage.prototype.setID = function (num) {
-  this.message.id = (num == -1)?(parseInt(forge.util.bytesToHex(forge.random.getBytesSync(4)), 16)):(num+1);
+  this.message.id = (num == -1)?(SecureMessage.getRandomInteger()):(num+1);
 }
 
 //returns HEX of the encripted SecureMessage
@@ -87,6 +87,10 @@ SecureMessage.getRandomBytes = function (size) {
   return forge.random.getBytesSync(size);
 }
 
+SecureMessage.getRandomInteger = function () {
+  return parseInt(forge.util.bytesToHex(forge.random.getBytesSync(4)), 16);
+}
+
 SecureMessage.prototype.extractSessionKey = function (pem) {
   var privateKey = forge.pki.privateKeyFromPem(pem);
   var temp = {
@@ -105,11 +109,15 @@ SecureMessage.prototype.appendSessionKey = function (pem) {
   }
 
   this.message.sessionKey = {
-    key: forge.util.bytesToHex(publicKey.encrypt(temp.key)),//crypto.publicEncrypt(key, new Buffer(temp.key, 'hex')).toString('hex'),
+    key: forge.util.bytesToHex(publicKey.encrypt(temp.key)),
     iv: forge.util.bytesToHex(temp.iv)
   };
 
   return temp;
+}
+
+SecureMessage.prototype.appendNonce = function() {
+  this.message.nonce = SecureMessage.getRandomInteger();
 }
 
 SecureMessage.getSecureMessage = function (data, sessionKey) {

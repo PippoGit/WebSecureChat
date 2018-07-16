@@ -15,10 +15,8 @@ function UILoginViewController() {
       action: "login",
       username: me.username
     });
-
-    me.serverSessionKey = message.appendSessionKey(Settings.security.serverPublic);
+    message.appendNonce();
     message.sign(me.private);
     ac.serverConnection.send(message.stringify());
-    console.log(message.stringify());
   });
 }

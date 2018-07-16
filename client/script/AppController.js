@@ -59,10 +59,17 @@ AppController.prototype.startServerConnection = function() {
         break;
 
       case "grant":
-
-        me.logged = 1;
-        ac.changeView("UIContactsView");
-        ac.getContactsList();
+        try {
+          secmsg.verify(Settings.security.serverPublic);
+          me.serverSessionKey = secmsg.extractSessionKey(me.private);
+          me.logged = 1;
+          ac.changeView("UIContactsView");
+          ac.getContactsList();
+        }
+        catch(e) {
+          ac.alertView.show("Alert", "You received an unauthorized session key");
+          return;
+        }
         break;
 
       case "request":

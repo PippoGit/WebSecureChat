@@ -2,29 +2,24 @@
   "alice": {
     "pkey": "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDA5E3VWxdQHEHm3Zza6iom1lK/\nzyyvoSvyKsNYSbE2JCAGPHEFnLpQd3mdnFeXimIRHs8p7LFcxbOqGsZ0hHve6DNY\nUdHfoKpqMX5w6BGhzf4qCZS2OPN/JtJ5ctI4vd6na4J40QrwxKaG0T17wPsi7uAJ\n3Wz8l1j8sfJMM8aYIQIDAQAB\n-----END PUBLIC KEY-----",
     "busy":0,
-    "logged":0,
-    "previousSessionKeys" : []
+    "logged":0
   },
 
   "bob" : {
     "pkey": "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDKioSVLUxeoanc7bY/ypy+2WHl\ntPdwH0XFjrVXWlP/fXuH1CucxXztrtUnIxSaX+h9I7aCjuWkA0ZBh94RDowX9HB6\n0+Tmkg3pSRCOV9GqTSqecHvBqIhZmZYHDo322H/FvkKN7M7Ul6weCDJfTy38U6JB\nMOLy5Y8VbeUyjYwG6QIDAQAB\n-----END PUBLIC KEY-----",
     "busy":0,
-    "logged":0,
-    "previousSessionKeys" : []
+    "logged":0
   },
 
   "pippo" : {
     "pkey": "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCXUgXYEWYHL70KygkklR5C5wJM\n1EL0GD1AdDMJ/W/yXgn0OohaOejRNbe77XVpE+/AtK2u/11iaLFQ3IkQo02n3n/4\nhCP0M84W0KyoZVfVwPjPEV+2+jv3LBVTBhcfUQ3A/i4OK4cmFhcch3V7PkeDxyaX\nfCOAOGUzyGRD0bU62wIDAQAB\n-----END PUBLIC KEY-----",
     "busy":0,
-    "logged":0,
-    "previousSessionKeys" : []
+    "logged":0
   },
   "gabri" : {
     "pkey": "-----BEGIN PUBLIC KEY-----\nMIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgH19SitVt9Ul7rjRpFj6/TIIzNwn\nE0Ybezl2cf3iSSQoYrgqR24IOmn8CDpZ/c42b7JxnI+aF3SmokpYFn4b4rbPSGJG\n/rtvwWN5nT3DfvQDIzMnvRFgNTXzDpyeLwFGre+VuoQ/nDZPiCMoB2ebAEuKUFo+\nDjgDwTmiAilyqACbAgMBAAE=\n-----END PUBLIC KEY-----",
     "busy":0,
-    "logged":0,
-    "previousSessionKeys" : []
+    "logged":0
   }
-
 
 }
