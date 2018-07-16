@@ -44,10 +44,10 @@ io.on('connection', function(socket) {
         var tempK = secmsg.extractSessionKey(settings.security.private);
         if(isSessionKeyFresh(secmsg.message.username, tempK)) {
           socket.sessionKey = tempK;
-          users[secmsg.message.username].previousSessionKeys.push(tempK); 
+          users[secmsg.message.username].previousSessionKeys.push(tempK);
         }
         else
-          throw("The session key is not valid. Please, retry.");
+          throw("An error occured with the session key during the connection. Please, retry.");
       }
       else
       {
