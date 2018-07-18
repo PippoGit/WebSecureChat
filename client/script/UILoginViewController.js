@@ -16,6 +16,7 @@ function UILoginViewController() {
       username: me.username
     });
     message.appendNonce();
+    me.nonce = message.message.nonce;
     message.sign(me.private);
     ac.serverConnection.send(message.stringify());
   });

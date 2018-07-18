@@ -61,6 +61,9 @@ AppController.prototype.startServerConnection = function() {
       case "grant":
         try {
           secmsg.verify(Settings.security.serverPublic);
+          if(me.nonce != secmsg.message.nonce)
+            throw("Nonce is not valid...");
+            
           me.serverSessionKey = secmsg.extractSessionKey(me.private);
           me.logged = 1;
           ac.changeView("UIContactsView");

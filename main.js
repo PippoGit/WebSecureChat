@@ -142,7 +142,7 @@ function login(socket, secmsg) {
   users[username].socket = socket;
   socket.username = username;
 
-  var m = new SecureMessage({action:"grant"});
+  var m = new SecureMessage({action:"grant", nonce: secmsg.message.nonce});
   socket.sessionKey = m.appendSessionKey(users[username].pkey);
   m.sign(settings.security.private);
   socket.send(m.stringify());
