@@ -163,8 +163,10 @@ function request(sender, recipient) {
   var m = new SecureMessage({
     action: "request",
     sender: sender,
-    pkey: users[sender].pkey
+    pkey: users[sender].pkey,
   });
+  m.appendNonce();
+  users[recipient].nonce = m.message.nonce;
   m.sign(settings.security.private);
   users[recipient].socket.send(m.encrypt(users[recipient].socket.sessionKey));
 }
@@ -183,7 +185,9 @@ function close(user, other) {
 function accept(user, secmsg) {
   try {
     secmsg.verify(users[user].pkey);
-    if(!isEncryptedSessionKeyFresh(user, secmsg.message.sessionKey))
+    console.log(secmsg.stringify());
+    console.log("nonce: " + user + " " + users[user].nonce + " - " + secmsg.message.nonce);
+    if(users[user].nonce != secmsg.message.nonce)
       throw("Session Key is not fresh!");
   }
   catch(e) {
@@ -251,6 +255,7 @@ function list(username) {
   return list;
 }
 
+/*useless function...
 function isEncryptedSessionKeyFresh(user, encryptedKey) {
   // i don't know the key, but i can see the encrypted, so if the encrypted is old
   // the key will be old too
@@ -262,3 +267,4 @@ function isEncryptedSessionKeyFresh(user, encryptedKey) {
   users[user].previousEncryptedSessionKeys.push(encryptedKey);
   return true;
 }
+*/

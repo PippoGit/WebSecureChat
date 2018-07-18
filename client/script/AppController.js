@@ -63,7 +63,7 @@ AppController.prototype.startServerConnection = function() {
           secmsg.verify(Settings.security.serverPublic);
           if(me.nonce != secmsg.message.nonce)
             throw("Nonce is not valid...");
-            
+
           me.serverSessionKey = secmsg.extractSessionKey(me.private);
           me.logged = 1;
           ac.changeView("UIContactsView");
@@ -92,7 +92,8 @@ AppController.prototype.startServerConnection = function() {
           ac.chatView.newChat(m.sender, m.pkey);
           message = new SecureMessage({
             action: "accept",
-            other: m.sender
+            other: m.sender,
+            nonce: secmsg.message.nonce
           });
 
           me.chatSessionKey = message.appendSessionKey(m.pkey);
