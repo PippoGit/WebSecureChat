@@ -61,8 +61,6 @@ MOLy5Y8VbeUyjYwG6QIDAQAB
 
 
 # To do
-* BAN Logic (?)
 
 
 # Known bugs
-* SocketIO timeout policy sucks :(
