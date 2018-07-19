@@ -20,7 +20,7 @@ io.on('connection', function(socket) {
   io.emit("connected");
 
   socket.on("heartbeat", function() {
-    console.log(" ~ heartbeat from " + socket.id);
+    socket.emit("heartbeat");
   });
 
   socket.on("disconnect", function() {
@@ -254,17 +254,3 @@ function list(username) {
   users[username].socket.send(m.encrypt(users[username].socket.sessionKey));
   return list;
 }
-
-/*useless function...
-function isEncryptedSessionKeyFresh(user, encryptedKey) {
-  // i don't know the key, but i can see the encrypted, so if the encrypted is old
-  // the key will be old too
-  var keys = users[user].previousEncryptedSessionKeys;
-  for(k in keys) {
-    if(k==encryptedKey)
-      return false;
-  }
-  users[user].previousEncryptedSessionKeys.push(encryptedKey);
-  return true;
-}
-*/
