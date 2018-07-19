@@ -15,73 +15,77 @@ SecureMessage.prototype.setID = function (num) {
 }
 
 //returns HEX of the encripted SecureMessage
-SecureMessage.symmetricEncrypt = function(k, data) {
-  var cipher = forge.cipher.createCipher(symmetricAlgorithm, k.key);
-  cipher.start({iv: k.iv});
+SecureMessage.symmetricEncrypt = function(params, data) {
+  console.log(JSON.stringify(params));
+
+  var cipher = forge.cipher.createCipher(symmetricAlgorithm, params.key);
+  cipher.start({iv: params.iv});
   cipher.update(forge.util.createBuffer(data));
   cipher.finish();
   var encrypted = cipher.output;
   return encrypted.toHex();
 }
 
-SecureMessage.symmetricDecrypt = function(k, data) {
-  var decipher = forge.cipher.createDecipher(symmetricAlgorithm, k.key);
-  decipher.start({iv: k.iv});
+SecureMessage.symmetricDecrypt = function(params, data) {
+  console.log(JSON.stringify(params));
+  var decipher = forge.cipher.createDecipher(symmetricAlgorithm, params.key);
+  decipher.start({iv: params.iv});
   decipher.update(forge.util.createBuffer(data));
-  var result = decipher.finish(); // check 'result' for true/false
+  var result = decipher.finish();
   // outputs decrypted hex
 
   return decipher.output.toString();
 }
 
 SecureMessage.prototype.encrypt = function (k) {
-  var newK = {
-    key: k.key,
+  var cipherParams = {
+    key: k,
     iv: forge.random.getBytesSync(symmetricKeySize)
   };
+  console.log(JSON.stringify(cipherParams));
 
   var encrypted = {
-    ciphertext: SecureMessage.symmetricEncrypt(newK, this.stringify()),
-    iv: newK.iv
+    ciphertext: SecureMessage.symmetricEncrypt(cipherParams, this.stringify()),
+    iv: cipherParams.iv
   };
 
   return JSON.stringify(encrypted);
 }
 
 SecureMessage.prototype.encryptText = function (k) {
-  var newK = {
-    key: k.key,
+  var cipherParams = {
+    key: k,
     iv: forge.random.getBytesSync(symmetricKeySize)
   };
 
   var text = forge.util.encodeUtf8(this.message.text);
-  this.message.text = SecureMessage.symmetricEncrypt(newK, text);
-  this.message.iv = forge.util.bytesToHex(newK.iv);
+  this.message.text = SecureMessage.symmetricEncrypt(cipherParams, text);
+  this.message.iv = forge.util.bytesToHex(cipherParams.iv);
 }
 
 //returns decrypted SecureMessage from HEX ciphertext
 SecureMessage.decrypt = function (k, message) {
   message = JSON.parse(message);
 
-  var newK = {
-    key: k.key,
+  var cipherParams = {
+    key: k,
     iv: message.iv
   };
 
 
   var data = forge.util.hexToBytes(message.ciphertext);
-  var decrypted = SecureMessage.symmetricDecrypt(newK, data);
+  var decrypted = SecureMessage.symmetricDecrypt(cipherParams, data);
   return SecureMessage.parse(decrypted);
 }
 
 SecureMessage.prototype.decryptText = function (k) {
-  var newK = {
-    key: k.key,
+  var cipherParams = {
+    key: k,
     iv: forge.util.hexToBytes(this.message.iv)
   };
 
   var data = forge.util.hexToBytes(this.message.text);
-  var decrypted = SecureMessage.symmetricDecrypt(newK, data);
+  var decrypted = SecureMessage.symmetricDecrypt(cipherParams, data);
   this.message.text = decrypted;
 }
 
@@ -123,29 +127,17 @@ SecureMessage.getRandomInteger = function () {
 
 SecureMessage.prototype.extractSessionKey = function (pem) {
   var privateKey = forge.pki.privateKeyFromPem(pem);
-  var temp = {
-    key: forge.util.hexToBytes(this.message.sessionKey.key),
-    iv: forge.util.hexToBytes(this.message.sessionKey.iv)
-  }
-  temp.key = privateKey.decrypt(temp.key);
-  return temp;
+  var temp =  forge.util.hexToBytes(this.message.sessionKey);
+  return privateKey.decrypt(temp);
 }
 
 SecureMessage.prototype.appendSessionKey = function (pem) {
   var publicKey = forge.pki.publicKeyFromPem(pem);
-  var temp = {
-    key: forge.random.getBytesSync(symmetricKeySize),
-    iv: forge.random.getBytesSync(symmetricKeySize)
-  }
+  var temp =  forge.random.getBytesSync(symmetricKeySize);
 
-  this.message.sessionKey = {
-    key: forge.util.bytesToHex(publicKey.encrypt(temp.key)),
-    iv: forge.util.bytesToHex(temp.iv)
-  };
-
+  this.message.sessionKey = forge.util.bytesToHex(publicKey.encrypt(temp));
   return temp;
 }
-
 SecureMessage.prototype.appendNonce = function() {
   this.message.nonce = SecureMessage.getRandomInteger();
 }

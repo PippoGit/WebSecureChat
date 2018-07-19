@@ -47,7 +47,7 @@ io.on('connection', function(socket) {
       {
         //User already logged in, which means we can use AES
 
-        console.log("AES Decryption using " + JSON.stringify(socket.sessionKey.key));
+        console.log("AES Decryption using " + JSON.stringify(socket.sessionKey));
         console.log("Received: \n" + buffer);
 
         secmsg = SecureMessage.decrypt(socket.sessionKey, buffer);
