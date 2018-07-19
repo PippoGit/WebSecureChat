@@ -65,16 +65,5 @@ MOLy5Y8VbeUyjYwG6QIDAQAB
 
 
 # To do
-<<<<<<< Updated upstream
-
 
 # Known bugs
-=======
-<<<<<<< HEAD
-* BAN Logic (?)
-=======
-
-
-# Known bugs
->>>>>>> origin/master
->>>>>>> Stashed changes
