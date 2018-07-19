@@ -30,13 +30,15 @@ SecureMessage.symmetricDecrypt = function(k, data) {
   decipher.update(forge.util.createBuffer(data));
   var result = decipher.finish(); // check 'result' for true/false
   // outputs decrypted hex
+  console.log("decipherouput:", JSON.stringify(decipher));
+
   return decipher.output.toString();
 }
 
 SecureMessage.prototype.encrypt = function (k) {
   var newK = {
     key: k.key,
-    iv: forge.random.getBytesSync(16)
+    iv: forge.random.getBytesSync(symmetricKeySize)
   };
 
   var encrypted = {
@@ -48,27 +50,42 @@ SecureMessage.prototype.encrypt = function (k) {
 }
 
 SecureMessage.prototype.encryptText = function (k) {
+  var newK = {
+    key: k.key,
+    iv: forge.random.getBytesSync(symmetricKeySize)
+  };
+
   var text = forge.util.encodeUtf8(this.message.text);
-  this.message.text = SecureMessage.symmetricEncrypt(k, text);
+  this.message.text = SecureMessage.symmetricEncrypt(newK, text);
+  this.message.iv = forge.util.encodeUtf8(newK.iv);
 }
 
 //returns decrypted SecureMessage from HEX ciphertext
 SecureMessage.decrypt = function (k, message) {
-  
   message = JSON.parse(message);
+
   var newK = {
     key: k.key,
     iv: message.iv
   };
 
+
   var data = forge.util.hexToBytes(message.ciphertext);
+  console.log("data:", data);
   var decrypted = SecureMessage.symmetricDecrypt(newK, data);
+  console.log("dec:", decrypted);
+
   return SecureMessage.parse(decrypted);
 }
 
 SecureMessage.prototype.decryptText = function (k) {
+  var newK = {
+    key: k.key,
+    iv: forge.util.decodeUtf8(this.message.iv)
+  };
+
   var data = forge.util.hexToBytes(this.message.text);
-  var decrypted = SecureMessage.symmetricDecrypt(k, data);
+  var decrypted = SecureMessage.symmetricDecrypt(newK, data);
   this.message.text = decrypted;
 }
 
@@ -121,8 +138,8 @@ SecureMessage.prototype.extractSessionKey = function (pem) {
 SecureMessage.prototype.appendSessionKey = function (pem) {
   var publicKey = forge.pki.publicKeyFromPem(pem);
   var temp = {
-    key: forge.random.getBytesSync(16),
-    iv: forge.random.getBytesSync(16)
+    key: forge.random.getBytesSync(symmetricKeySize),
+    iv: forge.random.getBytesSync(symmetricKeySize)
   }
 
   this.message.sessionKey = {
