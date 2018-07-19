@@ -34,7 +34,17 @@ SecureMessage.symmetricDecrypt = function(k, data) {
 }
 
 SecureMessage.prototype.encrypt = function (k) {
-  return SecureMessage.symmetricEncrypt(k, this.stringify());
+  var newK = {
+    key: k.key,
+    iv: forge.random.getBytesSync(16)
+  };
+
+  var encrypted = {
+    ciphertext: SecureMessage.symmetricEncrypt(newK, this.stringify()),
+    iv: newK.iv
+  };
+
+  return JSON.stringify(encrypted);
 }
 
 SecureMessage.prototype.encryptText = function (k) {
@@ -43,9 +53,16 @@ SecureMessage.prototype.encryptText = function (k) {
 }
 
 //returns decrypted SecureMessage from HEX ciphertext
-SecureMessage.decrypt = function (k, ciphertext) {
-  var data = forge.util.hexToBytes(ciphertext);
-  var decrypted = SecureMessage.symmetricDecrypt(k, data);
+SecureMessage.decrypt = function (k, message) {
+  
+  message = JSON.parse(message);
+  var newK = {
+    key: k.key,
+    iv: message.iv
+  };
+
+  var data = forge.util.hexToBytes(message.ciphertext);
+  var decrypted = SecureMessage.symmetricDecrypt(newK, data);
   return SecureMessage.parse(decrypted);
 }
 
@@ -130,12 +147,8 @@ SecureMessage.getSecureMessage = function (data, sessionKey) {
 }
 
 SecureMessage.isClearTxt = function(msg) {
-  try {
-    JSON.parse(msg);
-  } catch (e) {
-    return false;
-  }
-  return true;
+    var m = JSON.parse(msg);
+    return (typeof(m.ciphertext) === 'undefined')
 }
 
 if(typeof module != "undefined")
