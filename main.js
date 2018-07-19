@@ -16,7 +16,7 @@ app.get('/', function(req, res) {
 });
 
 io.on('connection', function(socket) {
-  console.log(socket.id, 'new connection!');
+  //console.log(socket.id, 'new connection!');
   io.emit("connected");
 
   socket.on("heartbeat", function() {
@@ -24,8 +24,9 @@ io.on('connection', function(socket) {
   });
 
   socket.on("disconnect", function() {
+
     if(socket.username == undefined) {
-      console.log(' - An unlogged user disconnected...');
+      // console.log(' - An unlogged user disconnected...');
       return;
     }
 
