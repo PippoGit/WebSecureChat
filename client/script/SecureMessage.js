@@ -30,7 +30,6 @@ SecureMessage.symmetricDecrypt = function(k, data) {
   decipher.update(forge.util.createBuffer(data));
   var result = decipher.finish(); // check 'result' for true/false
   // outputs decrypted hex
-  console.log("decipherouput:", JSON.stringify(decipher));
 
   return decipher.output.toString();
 }
@@ -71,10 +70,7 @@ SecureMessage.decrypt = function (k, message) {
 
 
   var data = forge.util.hexToBytes(message.ciphertext);
-  console.log("data:", data);
   var decrypted = SecureMessage.symmetricDecrypt(newK, data);
-  console.log("dec:", decrypted);
-
   return SecureMessage.parse(decrypted);
 }
 

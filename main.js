@@ -228,7 +228,6 @@ function decline(user, other) {
 
 function post(sender, recipient, secmsg) {
   var message = secmsg.message.text;
-  console.log(JSON.stringify(message));
   console.log(sender + " sent message to " + recipient);
   console.log("message: " + message);
 
