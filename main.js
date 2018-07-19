@@ -235,8 +235,8 @@ function post(sender, recipient, secmsg) {
   var m = new SecureMessage({
     id: secmsg.message.id,
     action: "post",
-    text: secmsg.message,
-
+    text: secmsg.message.text,
+    iv: secmsg.message.iv
   });
 
   users[recipient].socket.send(m.encrypt(users[recipient].socket.sessionKey));
