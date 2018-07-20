@@ -7,6 +7,8 @@ The users trust the server authority on public key certification, also they trus
 
 At the moment of the login the users must specify their username, their public keys and their private keys (string in PEM format). Once logged in, the users can see the list of the connected  and available users and they can request a secure chat by clicking on the username of a specific user. If the recipient accepts the request the two users start an encrypted chat where they are the only entities able to read the messages.
 
+See the full documentation [here](report/Cybersecurity - SecureChat.pdf)
+
 
 # Try it!
 Try WebSecureChat on Heroku: https://websecurechat.herokuapp.com
@@ -62,8 +64,3 @@ tPdwH0XFjrVXWlP/fXuH1CucxXztrtUnIxSaX+h9I7aCjuWkA0ZBh94RDowX9HB6
 MOLy5Y8VbeUyjYwG6QIDAQAB
 -----END PUBLIC KEY-----
 ```
-
-
-# To do
-
-# Known bugs
