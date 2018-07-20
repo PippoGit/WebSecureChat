@@ -13,7 +13,7 @@ At the moment of the login the users must specify their username, their public k
 
 ![chat  SecureChat](https://i.imgur.com/CvObPhi.png)
 
-See the full documentation [here](report/Cybersecurity - SecureChat.pdf)
+See the full documentation [here](https://github.com/PippoGit/WebSecureChat/blob/master/report/Cybersecurity%20-%20SecureChat.pdf)
 
 
 ## Try it!
