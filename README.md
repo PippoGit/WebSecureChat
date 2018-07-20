@@ -1,10 +1,11 @@
 # WebSecureChat
+*Browser version of SecureChat made with socket.io and forge.*
+
+
+## The application
 ![login SecureChat](https://i.imgur.com/TnE8FyT.png)
 
 
-*Browser version of SecureChat made with socket.io and forge.*
-
-## The application
 SecureChat is a client-server Instant Message service written in Javascript, that used cybersecurity mechanism to provide a TOFU (Trust On First Use) end-to-end encryption. Users must be registered to the service in order to use the chat: at the moment of the registration each user must provide a 1024-bit RSA public key and verify their identity.
 
 The users trust the server authority on public key certification, also they trust that the first time the server provide a public key of a certain user it is correct. This assumption is required to correctly fulfill the end-to-end encryption requirement (the server, if compromised, could be a Man-In-The-Middle and provide the wrong public key for a user and by that it could be able to read the messages of the next sessions; however, this is possible only on the first time the users A and B try to chat, because after the first session they discover each other’s public key).
