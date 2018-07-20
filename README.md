@@ -1,19 +1,22 @@
 # WebSecureChat
-![login SecureChat](https://i.imgur.com/TnE8FyT.png)
-Browser version of SecureChat made with socket.io and forge.
+![login SecureChat](https://i.imgur.com/TnE8FyT.png) "Screenshot of the login view"
 
+
+*Browser version of SecureChat made with socket.io and forge.*
+
+## The application
 SecureChat is a client-server Instant Message service written in Javascript, that used cybersecurity mechanism to provide a TOFU (Trust On First Use) end-to-end encryption. Users must be registered to the service in order to use the chat: at the moment of the registration each user must provide a 1024-bit RSA public key and verify their identity.
 
 The users trust the server authority on public key certification, also they trust that the first time the server provide a public key of a certain user it is correct. This assumption is required to correctly fulfill the end-to-end encryption requirement (the server, if compromised, could be a Man-In-The-Middle and provide the wrong public key for a user and by that it could be able to read the messages of the next sessions; however, this is possible only on the first time the users A and B try to chat, because after the first session they discover each other’s public key).
 
 At the moment of the login the users must specify their username, their public keys and their private keys (string in PEM format). Once logged in, the users can see the list of the connected  and available users and they can request a secure chat by clicking on the username of a specific user. If the recipient accepts the request the two users start an encrypted chat where they are the only entities able to read the messages.
 
-![chat  SecureChat](https://i.imgur.com/CvObPhi.png) 
+![chat  SecureChat](https://i.imgur.com/CvObPhi.png) "Encrypted chat between Alice and Pippo"
 
 See the full documentation [here](report/Cybersecurity - SecureChat.pdf)
 
 
-# Try it!
+## Try it!
 Try WebSecureChat on Heroku: https://websecurechat.herokuapp.com
 
 Login as **alice**:
