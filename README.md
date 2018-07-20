@@ -19,7 +19,7 @@ See the full documentation [here](https://github.com/PippoGit/WebSecureChat/blob
 ## Try it!
 Try WebSecureChat on Heroku: https://websecurechat.herokuapp.com
 
-###Login as alice
+### Login as alice
 ```
 -----BEGIN RSA PRIVATE KEY-----
 MIICXQIBAAKBgQDA5E3VWxdQHEHm3Zza6iom1lK/zyyvoSvyKsNYSbE2JCAGPHEF
@@ -45,7 +45,7 @@ UdHfoKpqMX5w6BGhzf4qCZS2OPN/JtJ5ctI4vd6na4J40QrwxKaG0T17wPsi7uAJ
 -----END PUBLIC KEY-----
 ```
 
-###Login as bob
+### Login as bob
 ```
 -----BEGIN RSA PRIVATE KEY-----
 MIICWwIBAAKBgQDKioSVLUxeoanc7bY/ypy+2WHltPdwH0XFjrVXWlP/fXuH1Cuc
