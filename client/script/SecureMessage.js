@@ -16,7 +16,6 @@ SecureMessage.prototype.setID = function (num) {
 
 //returns HEX of the encripted SecureMessage
 SecureMessage.symmetricEncrypt = function(params, data) {
-  console.log(JSON.stringify(params));
 
   var cipher = forge.cipher.createCipher(symmetricAlgorithm, params.key);
   cipher.start({iv: params.iv});
@@ -27,7 +26,6 @@ SecureMessage.symmetricEncrypt = function(params, data) {
 }
 
 SecureMessage.symmetricDecrypt = function(params, data) {
-  console.log(JSON.stringify(params));
   var decipher = forge.cipher.createDecipher(symmetricAlgorithm, params.key);
   decipher.start({iv: params.iv});
   decipher.update(forge.util.createBuffer(data));
@@ -42,7 +40,6 @@ SecureMessage.prototype.encrypt = function (k) {
     key: k,
     iv: forge.random.getBytesSync(symmetricKeySize)
   };
-  console.log(JSON.stringify(cipherParams));
 
   var encrypted = {
     ciphertext: SecureMessage.symmetricEncrypt(cipherParams, this.stringify()),
