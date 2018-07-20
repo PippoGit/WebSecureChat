@@ -13,11 +13,11 @@ At the moment of the login the users must specify their username, their public k
 
 ![chat  SecureChat](https://i.imgur.com/CvObPhi.png)
 
-See the full documentation [here](https://github.com/PippoGit/WebSecureChat/blob/master/report/Cybersecurity%20-%20SecureChat.pdf)
+See the full [documentation](https://github.com/PippoGit/WebSecureChat/blob/master/report/Cybersecurity%20-%20SecureChat.pdf)
 
 
 ## Try it!
-Try WebSecureChat on Heroku: https://websecurechat.herokuapp.com
+Try WebSecureChat on [Heroku](https://websecurechat.herokuapp.com)
 
 ### Login as alice
 ```
