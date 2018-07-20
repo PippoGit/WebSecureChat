@@ -1,5 +1,5 @@
 # WebSecureChat
-![login SecureChat](https://i.imgur.com/TnE8FyT.png) "Screenshot of the login view"
+![login SecureChat](https://i.imgur.com/TnE8FyT.png)
 
 
 *Browser version of SecureChat made with socket.io and forge.*
@@ -11,7 +11,7 @@ The users trust the server authority on public key certification, also they trus
 
 At the moment of the login the users must specify their username, their public keys and their private keys (string in PEM format). Once logged in, the users can see the list of the connected  and available users and they can request a secure chat by clicking on the username of a specific user. If the recipient accepts the request the two users start an encrypted chat where they are the only entities able to read the messages.
 
-![chat  SecureChat](https://i.imgur.com/CvObPhi.png) "Encrypted chat between Alice and Pippo"
+![chat  SecureChat](https://i.imgur.com/CvObPhi.png)
 
 See the full documentation [here](report/Cybersecurity - SecureChat.pdf)
 
