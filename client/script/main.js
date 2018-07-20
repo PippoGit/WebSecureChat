@@ -24,8 +24,6 @@ var me = {
 
 function main() {
   forge.options.usePureJavaScript = true;
-  
   ac = new AppController();
   ac.startServerConnection();
-
 }
