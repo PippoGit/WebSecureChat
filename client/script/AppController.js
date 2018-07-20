@@ -29,6 +29,10 @@ AppController.prototype.startServerConnection = function() {
   this.serverConnection.on('message', function(data) {
     if(SecureMessage.isClearTxt(data.toString())) {
       var secmsg = SecureMessage.parse(data.toString());
+      if(secmsg.message.action != "list" &&
+         secmsg.message.action != "error" &&
+         secmsg.message.action != "grant") //if the message is cleartext but shouldn't ignore it!
+        return;
     }
     else {
       var secmsg = SecureMessage.decrypt(me.serverSessionKey, data.toString());
