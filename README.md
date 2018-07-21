@@ -3,7 +3,7 @@
 
 
 ## The application
-![login SecureChat](https://i.imgur.com/TnE8FyT.png)
+![login SecureChat](https://i.imgur.com/VBh0Gfj.png)
 
 
 SecureChat is a client-server Instant Message service written in Javascript, that used cybersecurity mechanism to provide a TOFU (Trust On First Use) end-to-end encryption. Users must be registered to the service in order to use the chat: at the moment of the registration each user must provide a 1024-bit RSA public key and verify their identity.
