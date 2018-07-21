@@ -8,7 +8,7 @@ function UILoginViewController() {
     }
 
     me.username = document.getElementById("UITextUsernameView").value;
-    me.pkey = document.getElementById("UIPublicKeyView").value;
+    //me.pkey = document.getElementById("UIPublicKeyView").value;
     me.private = document.getElementById("UIPrivateKeyView").value;
 
     var message = new SecureMessage({

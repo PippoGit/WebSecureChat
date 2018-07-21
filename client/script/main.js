@@ -13,11 +13,9 @@ const Settings = {
 
 var me = {
   username: "",
-
-  pkey: "",
+//pkey: "",
   serverKey: "",
   sessionKey: "",
-
   busy: 0,
   logged: 0,
 };
